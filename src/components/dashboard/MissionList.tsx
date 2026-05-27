@@ -60,9 +60,7 @@ export function MissionList({ initial }: MissionListProps) {
                   <span>+{m.xp} XP</span>
                 </div>
               </div>
-              {m.survival && !done && (
-                <Flame className="size-3.5 text-survival animate-pulse" />
-              )}
+              {m.survival && !done && <Flame className="size-3.5 text-survival animate-pulse" />}
               <span
                 className={`text-hud text-[10px] px-2 py-0.5 rounded-full border ${
                   priorityClass[m.priority]
