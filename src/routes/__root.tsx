@@ -9,24 +9,24 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { AppShell } from "@/components/layout/AppShell";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="flex min-h-screen items-center justify-center momentum-bg px-4">
+      <div className="max-w-md text-center glass-panel rounded-3xl p-10">
+        <div className="text-hud text-xs text-momentum mb-3">ERROR · 404</div>
+        <h1 className="font-display text-6xl font-black tracking-tighter">Off-grid.</h1>
+        <p className="mt-3 text-sm text-foreground/60">
+          The signal you followed leads nowhere. Return to base.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+        <Link
+          to="/"
+          className="mt-6 inline-flex items-center justify-center rounded-xl bg-momentum px-5 py-2.5 text-sm font-bold text-background"
+          style={{ boxShadow: "var(--shadow-glow-accent)" }}
+        >
+          Return to Dashboard
+        </Link>
       </div>
     </div>
   );
@@ -37,13 +37,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+    <div className="flex min-h-screen items-center justify-center momentum-bg px-4">
+      <div className="max-w-md text-center glass-panel rounded-3xl p-10">
+        <div className="text-hud text-xs text-survival mb-3">SYSTEM FAULT</div>
+        <h1 className="font-display text-2xl font-bold">This page didn't load.</h1>
+        <p className="mt-2 text-sm text-foreground/60">
+          Something destabilized. Re-sync or return to base.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -51,15 +50,15 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center justify-center rounded-xl bg-momentum px-4 py-2 text-sm font-bold text-background"
           >
-            Try again
+            Re-sync
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex items-center justify-center rounded-xl border border-glass-border bg-white/5 px-4 py-2 text-sm font-medium"
           >
-            Go home
+            Dashboard
           </a>
         </div>
       </div>
@@ -72,19 +71,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Momentum OS — Operate at peak consistency" },
+      { name: "description", content: "Momentum OS is a psychologically engineered productivity operating system. Build streaks, prove your work, and stay in flow." },
+      { name: "author", content: "Momentum OS" },
+      { property: "og:title", content: "Momentum OS" },
+      { property: "og:description", content: "A productivity OS designed for consistency, proof-of-work and anti-burnout." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800;900&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),
@@ -96,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
@@ -113,8 +114,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AppShell>
+        <Outlet />
+      </AppShell>
     </QueryClientProvider>
   );
 }
