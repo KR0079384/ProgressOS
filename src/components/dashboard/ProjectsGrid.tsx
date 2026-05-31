@@ -3,17 +3,45 @@ import { Box, Cpu, FileText, Layers } from "lucide-react";
 import type { Project } from "@/lib/data";
 
 const toneMap = {
-  momentum: { color: "oklch(0.78 0.15 200)", bg: "bg-momentum/10", border: "border-momentum/30", text: "text-momentum" },
-  flow: { color: "oklch(0.72 0.15 280)", bg: "bg-flow/10", border: "border-flow/30", text: "text-flow" },
-  ember: { color: "oklch(0.74 0.18 50)", bg: "bg-ember/10", border: "border-ember/30", text: "text-ember" },
-  neutral: { color: "oklch(0.7 0.02 260)", bg: "bg-white/5", border: "border-glass-border", text: "text-foreground/60" },
+  momentum: {
+    color: "oklch(0.78 0.15 200)",
+    bg: "bg-momentum/10",
+    border: "border-momentum/30",
+    text: "text-momentum",
+  },
+  flow: {
+    color: "oklch(0.72 0.15 280)",
+    bg: "bg-flow/10",
+    border: "border-flow/30",
+    text: "text-flow",
+  },
+  ember: {
+    color: "oklch(0.74 0.18 50)",
+    bg: "bg-ember/10",
+    border: "border-ember/30",
+    text: "text-ember",
+  },
+  neutral: {
+    color: "oklch(0.7 0.02 260)",
+    bg: "bg-white/5",
+    border: "border-glass-border",
+    text: "text-foreground/60",
+  },
 } as const;
 
 const icons = [Box, Cpu, FileText, Layers];
 
-export function ProjectsGrid({ projects, compact = false }: { projects: Project[]; compact?: boolean }) {
+export function ProjectsGrid({
+  projects,
+  compact = false,
+}: {
+  projects: Project[];
+  compact?: boolean;
+}) {
   return (
-    <div className={`grid gap-4 ${compact ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"}`}>
+    <div
+      className={`grid gap-4 ${compact ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"}`}
+    >
       {projects.map((p, i) => {
         const tone = toneMap[p.tone];
         const Icon = icons[i % icons.length];
@@ -32,7 +60,9 @@ export function ProjectsGrid({ projects, compact = false }: { projects: Project[
               style={{ background: tone.color, filter: "blur(60px)" }}
             />
             <div className="relative">
-              <div className={`size-10 rounded-xl ${tone.bg} ${tone.border} border grid place-items-center ${tone.text}`}>
+              <div
+                className={`size-10 rounded-xl ${tone.bg} ${tone.border} border grid place-items-center ${tone.text}`}
+              >
                 <Icon className="size-4" />
               </div>
               <h4 className="mt-4 font-display font-bold">{p.name}</h4>
@@ -40,7 +70,9 @@ export function ProjectsGrid({ projects, compact = false }: { projects: Project[
 
               <div className="mt-5">
                 <div className="flex items-center justify-between text-hud text-[10px] mb-1.5">
-                  <span className="text-foreground/40">{p.done} / {p.total} tasks</span>
+                  <span className="text-foreground/40">
+                    {p.done} / {p.total} tasks
+                  </span>
                   <span className={tone.text}>{pct}%</span>
                 </div>
                 <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">

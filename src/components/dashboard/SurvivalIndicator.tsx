@@ -13,7 +13,9 @@ export function SurvivalIndicator({ active }: { active: boolean }) {
         className={`size-1.5 rounded-full ${active ? "bg-survival" : "bg-foreground/30"}`}
         style={active ? { boxShadow: "0 0 8px oklch(0.65 0.22 20 / 0.8)" } : undefined}
       />
-      <span className={`text-hud text-[10px] font-bold ${active ? "text-survival" : "text-foreground/50"}`}>
+      <span
+        className={`text-hud text-[10px] font-bold ${active ? "text-survival" : "text-foreground/50"}`}
+      >
         {active ? "Survival Mode Active" : "Standard Mode"}
       </span>
     </div>

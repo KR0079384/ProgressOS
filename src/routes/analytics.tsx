@@ -1,5 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Bar, BarChart } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+  Bar,
+  BarChart,
+} from "recharts";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { focusHours, momentumTrend } from "@/lib/data";
 
@@ -7,7 +19,10 @@ export const Route = createFileRoute("/analytics")({
   head: () => ({
     meta: [
       { title: "Analytics · Momentum OS" },
-      { name: "description", content: "Momentum trends, consistency graphs and burnout prediction." },
+      {
+        name: "description",
+        content: "Momentum trends, consistency graphs and burnout prediction.",
+      },
     ],
   }),
   component: AnalyticsPage,
@@ -52,10 +67,34 @@ function AnalyticsPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="oklch(1 0 0 / 0.05)" vertical={false} />
-                <XAxis dataKey="day" stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
-                <YAxis stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
-                <Tooltip contentStyle={tooltipStyle} labelStyle={{ color: "oklch(0.78 0.15 200)", fontFamily: "JetBrains Mono", fontSize: 10 }} />
-                <Area type="monotone" dataKey="score" stroke="oklch(0.78 0.15 200)" strokeWidth={2.5} fill="url(#momGrad)" />
+                <XAxis
+                  dataKey="day"
+                  stroke="oklch(1 0 0 / 0.3)"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="oklch(1 0 0 / 0.3)"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <Tooltip
+                  contentStyle={tooltipStyle}
+                  labelStyle={{
+                    color: "oklch(0.78 0.15 200)",
+                    fontFamily: "JetBrains Mono",
+                    fontSize: 10,
+                  }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="score"
+                  stroke="oklch(0.78 0.15 200)"
+                  strokeWidth={2.5}
+                  fill="url(#momGrad)"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -68,8 +107,19 @@ function AnalyticsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={focusHours} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
                 <CartesianGrid stroke="oklch(1 0 0 / 0.05)" vertical={false} />
-                <XAxis dataKey="day" stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
-                <YAxis stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
+                <XAxis
+                  dataKey="day"
+                  stroke="oklch(1 0 0 / 0.3)"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="oklch(1 0 0 / 0.3)"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "oklch(1 0 0 / 0.03)" }} />
                 <Bar dataKey="hours" fill="oklch(0.78 0.15 200)" radius={[6, 6, 0, 0]} />
                 <Bar dataKey="deep" fill="oklch(0.72 0.15 280)" radius={[6, 6, 0, 0]} />
@@ -93,10 +143,27 @@ function AnalyticsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={momentumTrend} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
                 <CartesianGrid stroke="oklch(1 0 0 / 0.05)" vertical={false} />
-                <XAxis dataKey="day" stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
-                <YAxis stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
+                <XAxis
+                  dataKey="day"
+                  stroke="oklch(1 0 0 / 0.3)"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="oklch(1 0 0 / 0.3)"
+                  fontSize={10}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip contentStyle={tooltipStyle} />
-                <Line type="monotone" dataKey="burnout" stroke="oklch(0.65 0.22 20)" strokeWidth={2.5} dot={false} />
+                <Line
+                  type="monotone"
+                  dataKey="burnout"
+                  stroke="oklch(0.65 0.22 20)"
+                  strokeWidth={2.5}
+                  dot={false}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>

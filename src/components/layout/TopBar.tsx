@@ -1,11 +1,39 @@
-import { Bell, Command, Flame, Plus } from "lucide-react";
+import { Bell, Command, Flame, Plus, LogOut, User } from "lucide-react";
 import { motion } from "framer-motion";
+import { useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { signOut } from "@/lib/auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface TopBarProps {
   onOpenCommand: () => void;
 }
 
 export function TopBar({ onOpenCommand }: TopBarProps) {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await signOut();
+      if (error) {
+        toast.error("Logout Failed", { description: error.message });
+      } else {
+        toast.success("Logged out successfully");
+        navigate({ to: "/" });
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      toast.error("Error signing out", { description: message });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-20 h-16 glass-panel border-b border-glass-border px-4 md:px-8 flex items-center justify-between">
       <button
@@ -44,20 +72,51 @@ export function TopBar({ onOpenCommand }: TopBarProps) {
         >
           <Plus className="size-4" strokeWidth={2.5} />
         </motion.button>
-        <div className="flex items-center gap-3">
-          <div className="text-right hidden md:block">
-            <div className="text-xs font-bold font-display leading-tight">Alex Chen</div>
-            <div className="text-hud text-[10px] text-foreground/40">12,450 XP</div>
-          </div>
-          <div
-            className="size-9 rounded-xl border border-glass-border grid place-items-center text-xs font-bold font-display"
-            style={{
-              background: "linear-gradient(135deg, oklch(0.78 0.15 200 / 0.4), oklch(0.72 0.15 280 / 0.4))",
-            }}
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="flex items-center gap-3 text-left focus:outline-none hover:opacity-85 transition-opacity cursor-pointer">
+              <div className="text-right hidden md:block">
+                <div className="text-xs font-bold font-display leading-tight">Alex Chen</div>
+                <div className="text-hud text-[10px] text-foreground/40">12,450 XP</div>
+              </div>
+              <div
+                className="size-9 rounded-xl border border-glass-border grid place-items-center text-xs font-bold font-display"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.78 0.15 200 / 0.4), oklch(0.72 0.15 280 / 0.4))",
+                }}
+              >
+                AC
+              </div>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="end"
+            className="w-56 glass-panel border border-glass-border text-foreground rounded-2xl p-1.5 mt-1"
           >
-            AC
-          </div>
-        </div>
+            <DropdownMenuLabel className="px-2.5 py-2">
+              <div className="text-xs font-bold font-display">Alex Chen</div>
+              <div className="text-[10px] text-foreground/40 font-mono tracking-wider">
+                AGENT_LVL_14
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator className="bg-glass-border my-1" />
+            <DropdownMenuItem
+              onClick={() => navigate({ to: "/settings" })}
+              className="flex items-center gap-2.5 px-2.5 py-2 text-xs font-medium rounded-xl hover:bg-white/5 cursor-pointer focus:bg-white/5 focus:text-foreground text-foreground/80 transition-colors"
+            >
+              <User className="size-3.5 text-foreground/50 animate-pulse" /> Profile Settings
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-glass-border my-1" />
+            <DropdownMenuItem
+              onClick={handleLogout}
+              className="flex items-center gap-2.5 px-2.5 py-2 text-xs font-semibold rounded-xl text-survival hover:bg-survival/15 focus:bg-survival/15 focus:text-survival hover:text-survival cursor-pointer transition-colors"
+            >
+              <LogOut className="size-3.5" /> Log Out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

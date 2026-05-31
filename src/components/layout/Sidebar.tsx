@@ -8,7 +8,7 @@ export function Sidebar() {
 
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col glass-panel border-r border-glass-border z-30 sticky top-0 h-screen">
-      <Link to="/" className="p-6 flex items-center gap-3 group">
+      <Link to="/dashboard" className="p-6 flex items-center gap-3 group">
         <motion.div
           whileHover={{ rotate: 90, scale: 1.05 }}
           transition={{ type: "spring", stiffness: 200, damping: 15 }}

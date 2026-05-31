@@ -10,6 +10,8 @@ import {
 
 import appCss from "../styles.css?url";
 import { AppShell } from "@/components/layout/AppShell";
+import { useEffect } from "react";
+import { testConnection } from "@/lib/testConnection";
 
 function NotFoundComponent() {
   return (
@@ -72,10 +74,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Momentum OS — Operate at peak consistency" },
-      { name: "description", content: "Momentum OS is a psychologically engineered productivity operating system. Build streaks, prove your work, and stay in flow." },
+      {
+        name: "description",
+        content:
+          "Momentum OS is a psychologically engineered productivity operating system. Build streaks, prove your work, and stay in flow.",
+      },
       { name: "author", content: "Momentum OS" },
       { property: "og:title", content: "Momentum OS" },
-      { property: "og:description", content: "A productivity OS designed for consistency, proof-of-work and anti-burnout." },
+      {
+        property: "og:description",
+        content: "A productivity OS designed for consistency, proof-of-work and anti-burnout.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -111,6 +120,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    testConnection();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

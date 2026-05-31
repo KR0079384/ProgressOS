@@ -9,14 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as MissionsRouteImport } from './routes/missions'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as FocusRouteImport } from './routes/focus'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -32,9 +40,19 @@ const MissionsRoute = MissionsRouteImport.update({
   path: '/missions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FocusRoute = FocusRouteImport.update({
   id: '/focus',
   path: '/focus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnalyticsRoute = AnalyticsRouteImport.update({
@@ -57,29 +75,38 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
   '/analytics': typeof AnalyticsRoute
+  '/dashboard': typeof DashboardRoute
   '/focus': typeof FocusRoute
+  '/login': typeof LoginRoute
   '/missions': typeof MissionsRoute
   '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
   '/analytics': typeof AnalyticsRoute
+  '/dashboard': typeof DashboardRoute
   '/focus': typeof FocusRoute
+  '/login': typeof LoginRoute
   '/missions': typeof MissionsRoute
   '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
   '/analytics': typeof AnalyticsRoute
+  '/dashboard': typeof DashboardRoute
   '/focus': typeof FocusRoute
+  '/login': typeof LoginRoute
   '/missions': typeof MissionsRoute
   '/projects': typeof ProjectsRoute
   '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,42 +114,61 @@ export interface FileRouteTypes {
     | '/'
     | '/achievements'
     | '/analytics'
+    | '/dashboard'
     | '/focus'
+    | '/login'
     | '/missions'
     | '/projects'
     | '/settings'
+    | '/signup'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/achievements'
     | '/analytics'
+    | '/dashboard'
     | '/focus'
+    | '/login'
     | '/missions'
     | '/projects'
     | '/settings'
+    | '/signup'
   id:
     | '__root__'
     | '/'
     | '/achievements'
     | '/analytics'
+    | '/dashboard'
     | '/focus'
+    | '/login'
     | '/missions'
     | '/projects'
     | '/settings'
+    | '/signup'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AchievementsRoute: typeof AchievementsRoute
   AnalyticsRoute: typeof AnalyticsRoute
+  DashboardRoute: typeof DashboardRoute
   FocusRoute: typeof FocusRoute
+  LoginRoute: typeof LoginRoute
   MissionsRoute: typeof MissionsRoute
   ProjectsRoute: typeof ProjectsRoute
   SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
@@ -144,11 +190,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/focus': {
       id: '/focus'
       path: '/focus'
       fullPath: '/focus'
       preLoaderRoute: typeof FocusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/analytics': {
@@ -179,10 +239,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AchievementsRoute: AchievementsRoute,
   AnalyticsRoute: AnalyticsRoute,
+  DashboardRoute: DashboardRoute,
   FocusRoute: FocusRoute,
+  LoginRoute: LoginRoute,
   MissionsRoute: MissionsRoute,
   ProjectsRoute: ProjectsRoute,
   SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

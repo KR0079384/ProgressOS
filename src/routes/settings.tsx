@@ -39,7 +39,9 @@ function SettingsPage() {
       <div className="grid grid-cols-12 gap-6">
         <section className="col-span-12 lg:col-span-7 glass-panel rounded-3xl p-6">
           <h3 className="font-display text-lg font-bold mb-1">Neon Theme</h3>
-          <p className="text-xs text-foreground/50 mb-5">Pick the accent that drives your interface.</p>
+          <p className="text-xs text-foreground/50 mb-5">
+            Pick the accent that drives your interface.
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {themes.map((t) => (
               <button
@@ -51,7 +53,10 @@ function SettingsPage() {
               >
                 <div
                   className="size-10 rounded-xl mb-3"
-                  style={{ background: t.color, boxShadow: `0 0 18px ${t.color.replace(")", " / 0.5)")}` }}
+                  style={{
+                    background: t.color,
+                    boxShadow: `0 0 18px ${t.color.replace(")", " / 0.5)")}`,
+                  }}
                 />
                 <div className="text-sm font-medium">{t.name}</div>
                 {theme === t.id && (
@@ -73,7 +78,10 @@ function SettingsPage() {
             <div className="flex items-center gap-4 mb-5">
               <div
                 className="size-14 rounded-2xl grid place-items-center font-display font-black"
-                style={{ background: "linear-gradient(135deg, oklch(0.78 0.15 200 / 0.5), oklch(0.72 0.15 280 / 0.5))" }}
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.78 0.15 200 / 0.5), oklch(0.72 0.15 280 / 0.5))",
+                }}
               >
                 AC
               </div>
@@ -98,8 +106,18 @@ function SettingsPage() {
 
           <div className="glass-panel rounded-3xl p-6 space-y-4">
             <h3 className="font-display text-lg font-bold">System</h3>
-            <Toggle label="Survival Mode" hint="Heighten urgency on missed days" value={survival} onChange={setSurvival} />
-            <Toggle label="Reduce motion" hint="Disable ambient animations" value={reduceMotion} onChange={setReduceMotion} />
+            <Toggle
+              label="Survival Mode"
+              hint="Heighten urgency on missed days"
+              value={survival}
+              onChange={setSurvival}
+            />
+            <Toggle
+              label="Reduce motion"
+              hint="Disable ambient animations"
+              value={reduceMotion}
+              onChange={setReduceMotion}
+            />
           </div>
         </section>
       </div>
@@ -107,7 +125,17 @@ function SettingsPage() {
   );
 }
 
-function Toggle({ label, hint, value, onChange }: { label: string; hint: string; value: boolean; onChange: (v: boolean) => void }) {
+function Toggle({
+  label,
+  hint,
+  value,
+  onChange,
+}: {
+  label: string;
+  hint: string;
+  value: boolean;
+  onChange: (v: boolean) => void;
+}) {
   return (
     <div className="flex items-center justify-between">
       <div>

@@ -38,12 +38,61 @@ export interface ActivityItem {
 }
 
 export const missions: Mission[] = [
-  { id: "m1", title: "Refactor Momentum Core API", project: "Momentum OS", priority: "P1", duration: "2h block", status: "active", survival: true, xp: 120 },
-  { id: "m2", title: "Review Design System Tokens", project: "Helios", priority: "P2", duration: "45m", status: "todo", xp: 40 },
-  { id: "m3", title: "Write launch announcement draft", project: "Helios", priority: "P2", duration: "30m", status: "todo", xp: 30 },
-  { id: "m4", title: "Pair-review onboarding flow", project: "Neural Engine", priority: "P3", duration: "20m", status: "todo", xp: 20 },
-  { id: "m5", title: "Draft Survival Mode logic", project: "Momentum OS", priority: "P1", duration: "1h", status: "done", xp: 80 },
-  { id: "m6", title: "Ship telemetry pipeline v2", project: "Neural Engine", priority: "P1", duration: "3h", status: "done", xp: 150 },
+  {
+    id: "m1",
+    title: "Refactor Momentum Core API",
+    project: "Momentum OS",
+    priority: "P1",
+    duration: "2h block",
+    status: "active",
+    survival: true,
+    xp: 120,
+  },
+  {
+    id: "m2",
+    title: "Review Design System Tokens",
+    project: "Helios",
+    priority: "P2",
+    duration: "45m",
+    status: "todo",
+    xp: 40,
+  },
+  {
+    id: "m3",
+    title: "Write launch announcement draft",
+    project: "Helios",
+    priority: "P2",
+    duration: "30m",
+    status: "todo",
+    xp: 30,
+  },
+  {
+    id: "m4",
+    title: "Pair-review onboarding flow",
+    project: "Neural Engine",
+    priority: "P3",
+    duration: "20m",
+    status: "todo",
+    xp: 20,
+  },
+  {
+    id: "m5",
+    title: "Draft Survival Mode logic",
+    project: "Momentum OS",
+    priority: "P1",
+    duration: "1h",
+    status: "done",
+    xp: 80,
+  },
+  {
+    id: "m6",
+    title: "Ship telemetry pipeline v2",
+    project: "Neural Engine",
+    priority: "P1",
+    duration: "3h",
+    status: "done",
+    xp: 150,
+  },
 ];
 
 export const projects: Project[] = [
@@ -51,7 +100,9 @@ export const projects: Project[] = [
     id: "p1",
     name: "Project Helios",
     description: "Product launch & brand system",
-    done: 12, total: 24, tone: "momentum",
+    done: 12,
+    total: 24,
+    tone: "momentum",
     milestones: [
       { label: "Brand identity locked", done: true },
       { label: "Landing page v1 shipped", done: true },
@@ -63,7 +114,9 @@ export const projects: Project[] = [
     id: "p2",
     name: "Neural Engine",
     description: "ML inference layer refinement",
-    done: 8, total: 32, tone: "flow",
+    done: 8,
+    total: 32,
+    tone: "flow",
     milestones: [
       { label: "Model v3 trained", done: true },
       { label: "Inference < 80ms", done: false },
@@ -74,7 +127,9 @@ export const projects: Project[] = [
     id: "p3",
     name: "Atlas Docs",
     description: "Developer documentation rewrite",
-    done: 18, total: 22, tone: "ember",
+    done: 18,
+    total: 22,
+    tone: "ember",
     milestones: [
       { label: "IA finalized", done: true },
       { label: "Examples rewritten", done: true },
@@ -86,7 +141,9 @@ export const projects: Project[] = [
     id: "p4",
     name: "Obsidian Sync",
     description: "Cross-device state replication",
-    done: 3, total: 18, tone: "neutral",
+    done: 3,
+    total: 18,
+    tone: "neutral",
     milestones: [
       { label: "RFC approved", done: true },
       { label: "Prototype merge", done: false },
@@ -139,7 +196,7 @@ export const momentumTrend = Array.from({ length: 30 }, (_, i) => ({
 }));
 
 export const navItems = [
-  { code: "01", label: "Dashboard", to: "/" },
+  { code: "01", label: "Dashboard", to: "/dashboard" },
   { code: "02", label: "Missions", to: "/missions" },
   { code: "03", label: "Projects", to: "/projects" },
   { code: "04", label: "Focus Hub", to: "/focus" },
