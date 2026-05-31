@@ -10,6 +10,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
+  const publicRoutes = ["/", "/login", "/signup"];
+  const isPublicRoute = publicRoutes.includes(pathname);
+
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -24,9 +27,9 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="momentum-bg min-h-screen flex">
       <AmbientGlow />
-      <Sidebar />
+      {!isPublicRoute && <Sidebar />}
       <div className="flex-1 flex flex-col min-w-0">
-        <TopBar onOpenCommand={() => setPaletteOpen(true)} />
+        {!isPublicRoute && <TopBar onOpenCommand={() => setPaletteOpen(true)} />}
         <main className="flex-1 px-4 md:px-8 py-6 md:py-8 max-w-[1400px] w-full mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
@@ -41,7 +44,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           </AnimatePresence>
         </main>
       </div>
-      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+      {!isPublicRoute && (
+        <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+      )}
     </div>
   );
 }

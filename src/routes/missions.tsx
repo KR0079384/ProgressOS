@@ -38,7 +38,9 @@ function MissionCard({ m, onMove }: { m: Mission; onMove: (id: string, dir: 1 | 
       className="glass-panel rounded-2xl p-4 group"
     >
       <div className="flex items-center justify-between mb-2">
-        <span className={`text-hud text-[10px] px-2 py-0.5 rounded-full border ${priorityClass[m.priority]}`}>
+        <span
+          className={`text-hud text-[10px] px-2 py-0.5 rounded-full border ${priorityClass[m.priority]}`}
+        >
           {m.priority}
         </span>
         {m.survival && <Flame className="size-3.5 text-survival" />}
@@ -87,7 +89,10 @@ function MissionsPage() {
         title="Missions"
         description="Drag, advance, complete. Each shipped mission compounds your momentum."
         action={
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-momentum text-background font-bold text-sm" style={{ boxShadow: "var(--shadow-glow-accent)" }}>
+          <button
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-momentum text-background font-bold text-sm"
+            style={{ boxShadow: "var(--shadow-glow-accent)" }}
+          >
             <Plus className="size-4" strokeWidth={2.5} /> New Mission
           </button>
         }

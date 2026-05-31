@@ -20,7 +20,9 @@ export function ActivityFeed() {
           className="flex items-start gap-3 group"
         >
           <div className="flex flex-col items-center pt-1">
-            <div className={`size-2 rounded-full ${tagStyle[a.tag] === "text-momentum" ? "bg-momentum" : tagStyle[a.tag] === "text-flow" ? "bg-flow" : tagStyle[a.tag] === "text-ember" ? "bg-ember" : "bg-survival"}`} />
+            <div
+              className={`size-2 rounded-full ${tagStyle[a.tag] === "text-momentum" ? "bg-momentum" : tagStyle[a.tag] === "text-flow" ? "bg-flow" : tagStyle[a.tag] === "text-ember" ? "bg-ember" : "bg-survival"}`}
+            />
             {i < activity.length - 1 && <div className="w-px flex-1 bg-glass-border mt-1 h-8" />}
           </div>
           <div className="flex-1 pb-2">

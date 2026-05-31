@@ -1,4 +1,12 @@
-import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { focusHours } from "@/lib/data";
 
 export function FocusHoursChart() {
@@ -17,7 +25,13 @@ export function FocusHoursChart() {
             </linearGradient>
           </defs>
           <CartesianGrid stroke="oklch(1 0 0 / 0.05)" vertical={false} />
-          <XAxis dataKey="day" stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
+          <XAxis
+            dataKey="day"
+            stroke="oklch(1 0 0 / 0.3)"
+            fontSize={10}
+            tickLine={false}
+            axisLine={false}
+          />
           <YAxis stroke="oklch(1 0 0 / 0.3)" fontSize={10} tickLine={false} axisLine={false} />
           <Tooltip
             contentStyle={{
@@ -27,10 +41,26 @@ export function FocusHoursChart() {
               fontSize: 12,
               backdropFilter: "blur(12px)",
             }}
-            labelStyle={{ color: "oklch(0.78 0.15 200)", fontFamily: "JetBrains Mono", fontSize: 10 }}
+            labelStyle={{
+              color: "oklch(0.78 0.15 200)",
+              fontFamily: "JetBrains Mono",
+              fontSize: 10,
+            }}
           />
-          <Area type="monotone" dataKey="hours" stroke="oklch(0.78 0.15 200)" strokeWidth={2} fill="url(#focusGrad)" />
-          <Area type="monotone" dataKey="deep" stroke="oklch(0.72 0.15 280)" strokeWidth={2} fill="url(#deepGrad)" />
+          <Area
+            type="monotone"
+            dataKey="hours"
+            stroke="oklch(0.78 0.15 200)"
+            strokeWidth={2}
+            fill="url(#focusGrad)"
+          />
+          <Area
+            type="monotone"
+            dataKey="deep"
+            stroke="oklch(0.72 0.15 280)"
+            strokeWidth={2}
+            fill="url(#deepGrad)"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

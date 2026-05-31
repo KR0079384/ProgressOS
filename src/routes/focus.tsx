@@ -55,17 +55,29 @@ function FocusPage() {
           animate={{ opacity: running ? [0.4, 0.7, 0.4] : 0.3 }}
           transition={{ duration: 4, repeat: Infinity }}
           style={{
-            background: "radial-gradient(circle at 50% 50%, oklch(0.78 0.15 200 / 0.18) 0%, transparent 60%)",
+            background:
+              "radial-gradient(circle at 50% 50%, oklch(0.78 0.15 200 / 0.18) 0%, transparent 60%)",
           }}
         />
         <div className="relative flex flex-col items-center">
           <div className="relative" style={{ width: 360, height: 360, maxWidth: "100%" }}>
             <svg viewBox="0 0 320 320" className="w-full h-full -rotate-90">
-              <circle cx="160" cy="160" r={r} stroke="oklch(1 0 0 / 0.06)" strokeWidth="6" fill="none" />
+              <circle
+                cx="160"
+                cy="160"
+                r={r}
+                stroke="oklch(1 0 0 / 0.06)"
+                strokeWidth="6"
+                fill="none"
+              />
               <motion.circle
-                cx="160" cy="160" r={r}
+                cx="160"
+                cy="160"
+                r={r}
                 stroke="oklch(0.78 0.15 200)"
-                strokeWidth="6" fill="none" strokeLinecap="round"
+                strokeWidth="6"
+                fill="none"
+                strokeLinecap="round"
                 strokeDasharray={c}
                 animate={{ strokeDashoffset: offset }}
                 transition={{ duration: 1, ease: "linear" }}
@@ -93,7 +105,10 @@ function FocusPage() {
               {running ? "Pause" : "Begin Session"}
             </button>
             <button
-              onClick={() => { setRunning(false); setRemaining(DURATION); }}
+              onClick={() => {
+                setRunning(false);
+                setRemaining(DURATION);
+              }}
               className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl border border-glass-border bg-white/5 text-sm font-medium hover:bg-white/10 transition-colors"
             >
               <RotateCcw className="size-4" /> Reset

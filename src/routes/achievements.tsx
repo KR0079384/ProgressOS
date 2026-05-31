@@ -66,7 +66,9 @@ function AchievementsPage() {
                   r.current ? "border-momentum/50 bg-momentum/5" : ""
                 } ${r.unlocked ? "" : "opacity-40"}`}
               >
-                <div className="text-hud text-[9px] text-foreground/40">{r.xp.toLocaleString()} XP</div>
+                <div className="text-hud text-[9px] text-foreground/40">
+                  {r.xp.toLocaleString()} XP
+                </div>
                 <div className={`text-xs font-medium mt-1 ${r.current ? "text-momentum" : ""}`}>
                   {r.name}
                 </div>

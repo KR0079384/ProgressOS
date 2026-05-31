@@ -22,7 +22,10 @@ function ProjectsPage() {
         title="Projects"
         description="Every milestone is a checkpoint. Every checkpoint is proof you can stack more."
         action={
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-momentum text-background font-bold text-sm" style={{ boxShadow: "var(--shadow-glow-accent)" }}>
+          <button
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-momentum text-background font-bold text-sm"
+            style={{ boxShadow: "var(--shadow-glow-accent)" }}
+          >
             <Plus className="size-4" strokeWidth={2.5} /> New Project
           </button>
         }

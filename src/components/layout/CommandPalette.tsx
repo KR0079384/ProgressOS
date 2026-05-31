@@ -1,7 +1,16 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { Activity, BarChart3, Crosshair, Layers, Settings, Sparkles, Target, Trophy } from "lucide-react";
+import {
+  Activity,
+  BarChart3,
+  Crosshair,
+  Layers,
+  Settings,
+  Sparkles,
+  Target,
+  Trophy,
+} from "lucide-react";
 
 interface CommandPaletteProps {
   open: boolean;
@@ -35,9 +44,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
-  const filtered = commands.filter((c) =>
-    c.label.toLowerCase().includes(query.toLowerCase()),
-  );
+  const filtered = commands.filter((c) => c.label.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <AnimatePresence>
