@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ReflectRouteImport } from './routes/reflect'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as MissionsRouteImport } from './routes/missions'
 import { Route as LoginRouteImport } from './routes/login'
@@ -28,6 +29,11 @@ const SignupRoute = SignupRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReflectRoute = ReflectRouteImport.update({
+  id: '/reflect',
+  path: '/reflect',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/missions': typeof MissionsRoute
   '/projects': typeof ProjectsRoute
+  '/reflect': typeof ReflectRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/missions': typeof MissionsRoute
   '/projects': typeof ProjectsRoute
+  '/reflect': typeof ReflectRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/missions': typeof MissionsRoute
   '/projects': typeof ProjectsRoute
+  '/reflect': typeof ReflectRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/missions'
     | '/projects'
+    | '/reflect'
     | '/settings'
     | '/signup'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/missions'
     | '/projects'
+    | '/reflect'
     | '/settings'
     | '/signup'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/missions'
     | '/projects'
+    | '/reflect'
     | '/settings'
     | '/signup'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MissionsRoute: typeof MissionsRoute
   ProjectsRoute: typeof ProjectsRoute
+  ReflectRoute: typeof ReflectRoute
   SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
 }
@@ -174,6 +187,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reflect': {
+      id: '/reflect'
+      path: '/reflect'
+      fullPath: '/reflect'
+      preLoaderRoute: typeof ReflectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MissionsRoute: MissionsRoute,
   ProjectsRoute: ProjectsRoute,
+  ReflectRoute: ReflectRoute,
   SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
 }
