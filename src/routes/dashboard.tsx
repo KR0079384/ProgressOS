@@ -8,6 +8,7 @@ import { AchievementsRow } from "@/components/dashboard/AchievementsRow";
 import { FocusHoursChart } from "@/components/dashboard/FocusHoursChart";
 import { SurvivalIndicator } from "@/components/dashboard/SurvivalIndicator";
 import { ActivityFeed } from "@/components/dashboard/ActivityFeed";
+import { ReflectionSummary } from "@/components/dashboard/ReflectionSummary";
 import { achievements, missions, projects } from "@/lib/data";
 import { ArrowUpRight, Clock, TrendingUp, Zap } from "lucide-react";
 
@@ -172,14 +173,21 @@ function Dashboard() {
         <ProjectsGrid projects={projects.slice(0, 4)} compact />
       </section>
 
-      {/* Activity + Achievements */}
+      {/* Activity + Reflection + Achievements */}
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         <section className="col-span-12 lg:col-span-5 glass-panel rounded-3xl p-6">
           <div className="text-hud text-[10px] text-foreground/40 mb-1">RECENT</div>
           <h3 className="font-display text-xl font-bold mb-4">Activity</h3>
           <ActivityFeed />
         </section>
-        <section className="col-span-12 lg:col-span-7">
+
+        <section className="col-span-12 lg:col-span-4">
+          <div className="text-hud text-[10px] text-foreground/40 mb-1">BEHAVIORAL DATA</div>
+          <h3 className="font-display text-xl font-bold mb-4">Today's Reflection</h3>
+          <ReflectionSummary />
+        </section>
+
+        <section className="col-span-12 lg:col-span-3">
           <div className="text-hud text-[10px] text-foreground/40 mb-1">RANK PROGRESSION</div>
           <h3 className="font-display text-xl font-bold mb-4">Achievements</h3>
           <AchievementsRow items={achievements} />
