@@ -1,17 +1,3 @@
-/**
- * components/reflection/ReflectionInsight.tsx
- *
- * Displays computed analytics derived from the last 7 days of reflections.
- *
- * Data comes from useReflectionInsights (client-side computation over
- * useRecentReflections — no extra DB roundtrip).
- *
- * States handled:
- *   - loading  → skeleton grid
- *   - empty    → encouraging empty state
- *   - populated → real averages + top phrases
- */
-
 import { TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useReflectionInsights } from "@/hooks/useReflections";
@@ -132,9 +118,7 @@ export default function ReflectionInsight({ days = 7 }: ReflectionInsightProps) 
             </div>
 
             {/* Top phrases */}
-            {insights.topWin && (
-              <TextTile label="Most Frequent Win" value={insights.topWin} />
-            )}
+            {insights.topWin && <TextTile label="Most Frequent Win" value={insights.topWin} />}
             {insights.topBlocker && (
               <TextTile label="Most Common Blocker" value={insights.topBlocker} />
             )}
