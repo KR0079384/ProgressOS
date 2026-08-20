@@ -16,6 +16,7 @@ export const Route = createFileRoute("/reflect")({
   component: ReflectionPage,
 });
 
+
 function ReflectionPage() {
   return (
     <div className="space-y-8">
